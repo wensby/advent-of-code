@@ -10,3 +10,4 @@
 *.pyc
 *.input
 *.DS_Store
+!Makefile
