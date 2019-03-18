@@ -6,7 +6,7 @@ CC = gcc
 SOURCES := $(wildcard $(SRC_DIR)/*.c)
 solutions := $(addsuffix .solution, $(basename $(SOURCES)))
 all-tests := $(addsuffix .test, $(basename $(wildcard $(TEST_DIR)/*.input)))
-TEXT_COUNT = 0
+TEST_COUNT = 0
 
 .PHONY : build test all %.test
 
@@ -22,10 +22,10 @@ build: $(solutions)
 	$(eval object=$(shell echo | awk '{match("'"$<"'", /[0-9]{4}-[0-9]{2}-[0-9]/); print substr("'"$<"'", RSTART, RLENGTH);}'))
 	@echo "$<"
 	@$(BIN_DIR)/$(object) < $< 2>&1 | diff $(word 2, $?) - || true;
-	$(eval TEXT_COUNT=$(shell echo $$(($(TEXT_COUNT)+1))))
+	$(eval TEST_COUNT=$(shell echo $$(($(TEST_COUNT)+1))))
 
 test: $(all-tests)
-	@echo '$(TEXT_COUNT) tests run!'
+	@echo '$(TEST_COUNT) tests run!'
 
 clean:
 	@rm -if $(BIN_DIR)/*
