@@ -7,7 +7,9 @@
 # Unignore all dirs
 !*/
 
+# Ignore input directories
+**/input/
+
 *.pyc
-*.input
 *.DS_Store
 !Makefile
