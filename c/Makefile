@@ -16,6 +16,7 @@ build: $(solutions)
 %.solution: %.c
 	$(eval output=$(patsubst %.c, %, $(notdir $<)))
 	@echo "Compiling $(output)"
+	@mkdir -p $(BIN_DIR)
 	@$(CC) $< -o $(BIN_DIR)/$(output)
 
 %.test: %.input %.output
