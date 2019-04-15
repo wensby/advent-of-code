@@ -5,7 +5,7 @@ SHELL := /bin/bash
 CC = gcc
 SOURCES := $(wildcard $(SRC_DIR)/*.c)
 solutions := $(addsuffix .solution, $(basename $(SOURCES)))
-all-tests := $(addsuffix .test, $(basename $(wildcard $(TEST_DIR)/*.input)))
+all-tests := $(addsuffix .test, $(basename $(wildcard $(TEST_DIR)/*/*.input)))
 TEST_COUNT = 0
 
 .PHONY : build test all %.test
