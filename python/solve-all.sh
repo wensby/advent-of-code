@@ -1,10 +1,12 @@
 #!/bin/bash
 
-echo "Solving Day 1 - Part 1"
+echo "Solving 2015 Day 1 - Part 1"
 cat input/2015_01.input | python3.7 2015_01_1.py
-echo "Solving Day 1 - Part 2"
+echo "Solving 2015 Day 1 - Part 2"
 cat input/2015_01.input | python3.7 2015_01_2.py
-echo "Solving Day 2 - Part 1"
+echo "Solving 2015 Day 2 - Part 1"
 cat input/2015_02.input | python3.7 2015_02_1.py
-echo "Solving Day 2 - Part 2"
+echo "Solving 2015 Day 2 - Part 2"
 cat input/2015_02.input | python3.7 2015_02_2.py
+echo "Solving 2018 Day 3 - Part 1"
+cat input/2018_03.input | python3.7 2018_03_1.py
