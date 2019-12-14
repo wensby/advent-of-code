@@ -58,3 +58,5 @@ echo "Solving 2019 Day 12 - Part 1"
 cat input/2019_12.input | python3.7 2019_12_1.py
 echo "Solving 2019 Day 12 - Part 2"
 cat input/2019_12.input | python3.7 2019_12_2.py
+echo "Solving 2019 Day 13 - Part 1"
+cat input/2019_13.input | python3.7 2019_13_1.py
