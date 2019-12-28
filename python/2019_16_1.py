@@ -1,32 +1,36 @@
 import sys
+from functools import lru_cache
 
 base_pattern = [0, 1, 0, -1]
 
-
 def run(input):
-  return ''.join(map(str, fft(input, phases=100)[0:8]))
+  signal = tuple(map(int, input))
+  return find_first_8(signal)
 
-def fft(signal, phases=1):
-  signal = list(map(int, signal))
-  for i in range(phases):
-    signal = fft_once(signal)
-  return ''.join(map(str, signal))
+def find_first_8(signal):
+  digits = []
+  for i in range(8):
+    digits.append(reverse_fft(signal, i, 100))
+    print(digits[-1])
+  return ''.join(map(str, digits))
 
-def fft_once(signal):
-  return list(map(lambda x: apply_pattern(signal, x), range(len(signal))))
+@lru_cache(maxsize=None)
+def reverse_fft(signal, position, phase):
+  if phase == 0:
+    return signal[position]
+  result = 0
+  for i, f in get_sign_by_index(len(signal), position).items():
+    result += reverse_fft(signal, i, phase-1) * f
+  return abs(result) % 10
 
-def apply_pattern(signal, position):
-  def pattern_generator(position):
-    i = position
-    while True:
-      i += 1
-      yield base_pattern[int(i // (1+position)) % 4]
-  generator = pattern_generator(position)
-  sum = 0
-  for signal_index in range(position, len(signal)):
-    next_pattern_value = next(generator)
-    sum += signal[signal_index] * next_pattern_value
-  return abs(sum) % 10
+@lru_cache(maxsize=None)
+def get_sign_by_index(length, position):
+  sign_by_index = {}
+  for i  in range(length):
+    factor = base_pattern[int((i+1) // (1+position)) % 4]
+    if factor != 0:
+      sign_by_index[i] = factor
+  return sign_by_index
 
 if __name__ == '__main__':
   print(run(sys.stdin.read().splitlines()[0]))
